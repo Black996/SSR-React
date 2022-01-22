@@ -1,7 +1,9 @@
 import "babel-polyfill";
 import express from "express";
+import { matchRoutes } from "react-router-config";
 import renderer from "./helpers/renderer";
 import createStore from "./helpers/reduxServerStore";
+import routes from "./client/Routes";
 
 const app = express();
 
@@ -10,6 +12,7 @@ app.use(express.static("public"));
 app.get("*", (req, res) => {
   const store = createStore();
 
+  console.log(matchRoutes(routes, req.url));
   // We'll do some logic here
 
   res.send(renderer(req, store));
