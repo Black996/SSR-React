@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import Home from "./components/Home";
-import UsersList from "./components/UsersList";
+import UsersList, { loadData } from "./components/UsersList";
 
 const routes = [
   {
@@ -14,6 +14,7 @@ const routes = [
     path: "/users",
     component: UsersList,
     exact: true,
+    loadData,
   },
 ];
 

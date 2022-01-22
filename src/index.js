@@ -12,10 +12,11 @@ app.use(express.static("public"));
 app.get("*", (req, res) => {
   const store = createStore();
 
-  console.log(matchRoutes(routes, req.url));
-  // We'll do some logic here
+  const promises = matchRoutes(routes, req.url).map(({ route }) => {
+    return route.loadData ? route.loadData(store) : null;
+  });
 
-  res.send(renderer(req, store));
+  Promise.all(promises).then(() => res.send(renderer(req, store)));
 });
 
 app.listen(3000, () => console.log("Listening on Port 3000"));

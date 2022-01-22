@@ -24,7 +24,12 @@ class UsersList extends React.Component {
 }
 
 export default connect(mapStateToProps, { fetchUsers })(UsersList);
+export { loadData };
 
 function mapStateToProps({ users }) {
   return { users };
+}
+
+function loadData(store) {
+  return store.dispatch(fetchUsers());
 }
