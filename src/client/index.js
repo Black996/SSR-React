@@ -9,11 +9,12 @@ import thunk from "redux-thunk";
 import routes from "./Routes";
 import reducers from "./reducers";
 import { renderRoutes } from "react-router-config";
+import { axiosClientInstance } from "../helpers/axiosInstances";
 
 const store = createStore(
   reducers,
   window.INITIAL_STATE,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk.withExtraArgument(axiosClientInstance()))
 );
 
 ReactDOM.hydrate(
