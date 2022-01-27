@@ -3,17 +3,23 @@ import { Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import UsersListPage from "./pages/UsersListPage";
+import App from "./App";
 
 const routes = [
   {
-    ...HomePage,
-    path: "/",
-    exact: true,
-  },
-  {
-    ...UsersListPage,
-    path: "/users",
-    exact: true,
+    ...App,
+    routes: [
+      {
+        ...HomePage,
+        path: "/",
+        exact: true,
+      },
+      {
+        ...UsersListPage,
+        path: "/users",
+        exact: true,
+      },
+    ],
   },
 ];
 
