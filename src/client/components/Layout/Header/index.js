@@ -10,16 +10,31 @@ const Header = ({ auth }) => {
   );
 
   return (
-    <div>
+    <nav
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
       <div>
         <Link to="/">React SSR</Link>
       </div>
-      <div>
-        <Link to="/users">Users</Link>
-        <Link to="/admins">Admins</Link>
+      <ul
+        style={{
+          display: "flex",
+          listStyleType: "none",
+        }}
+      >
+        <li>
+          <Link to="/users">Users</Link>
+        </li>
+        <li>
+          <Link to="/admins">Admins</Link>
+        </li>
         {authButton}
-      </div>
-    </div>
+      </ul>
+    </nav>
   );
 };
 
