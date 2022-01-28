@@ -1,23 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
-import UserListItem from "./UsersListItem";
+import AccountsList from "../../components/common/AccountsList";
 
 class UsersList extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
 
-  renderUsers() {
-    return this.props.users.map(({ id, name }) => {
-      return <UserListItem key={id} name={name} />;
-    });
-  }
-
   render() {
+    const { users } = this.props;
+
     return (
       <div>
-        <ul>{this.renderUsers()}</ul>
+        <AccountsList accounts={users} />
       </div>
     );
   }
@@ -25,13 +21,9 @@ class UsersList extends React.Component {
 
 export default {
   component: connect(mapStateToProps, { fetchUsers })(UsersList),
-  loadData,
+  loadData: ({ dispatch }) => dispatch(fetchUsers()),
 };
 
 function mapStateToProps({ users }) {
   return { users };
-}
-
-function loadData(store) {
-  return store.dispatch(fetchUsers());
 }
